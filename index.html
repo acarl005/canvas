@@ -12,11 +12,12 @@
 
     <script>
       var cx = document.querySelector("canvas").getContext("2d");
-      cx.scale(2, 2);
+      // cx.scale(2, 2);
       var img = document.createElement('img');
       img.src = 'mario.png';
       var marioW = 21,
           marioH = 34;
+
       img.addEventListener('load', function() {
         drawMarioSlice(0);
         var cycle = 0;
