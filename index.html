@@ -8,14 +8,15 @@
   </head>
   <body>
 
-    <p>Before canvas.</p>
-    <canvas width="120" height="60"></canvas>
-    <p>After canvas.</p>
+    <canvas width="168"></canvas>
     <script>
-      var canvas = document.querySelector("canvas");
-      var context = canvas.getContext("2d");
-      context.fillStyle = "red";
-      context.fillRect(10, 10, 100, 50);
+      var cx = document.querySelector("canvas").getContext("2d");
+      var img = document.createElement('img');
+      img.src = 'mario.png';
+      img.addEventListener('load', function() {
+        cx.drawImage(img, 0, 10);
+      });
     </script>
+
   </body>
 </html>
