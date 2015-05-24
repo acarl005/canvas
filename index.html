@@ -8,7 +8,7 @@
   </head>
   <body>
 
-    <canvas width="1000", height="600"></canvas>
+    <canvas width="1000", height="600" style="background: url('bg.gif'); background-repeat: repeat-x;"></canvas>
 
     <script>
       var cx = document.querySelector("canvas").getContext("2d");
@@ -22,7 +22,7 @@
         drawMarioSlice(0);
         var cycle = 0;
         window.addEventListener('keypress', function(e) {
-          cx.clearRect(0, 80, marioW, marioH);
+          cx.clearRect(0, 70, marioW, marioH);
           if (String.fromCharCode(e.keyCode) == 'd') {
             cx.translate(2, 0);
             cycle = (cycle + 1) % 8;
@@ -36,10 +36,10 @@
           if (String.fromCharCode(e.keyCode).toLowerCase() == 'w') {
             for (var i = 1; i < 100; i++) {
               setTimeout(function(context, i) {
-                cx.clearRect(0, 80, marioW, marioH);
+                cx.clearRect(0, 70, marioW, marioH);
                 context.translate(0, (2*i - 100)/50);
                 drawMarioSlice(cycle);
-              }, 10 * i, cx, i);
+              }, 7 * i, cx, i);
             }
           }
         });
@@ -49,7 +49,7 @@
         cx.drawImage(
           img,
           i * marioW, 0, marioW, marioH,
-          0,          80, marioW, marioH
+          0,          70, marioW, marioH
         );
       }
 
