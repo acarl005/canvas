@@ -33,7 +33,7 @@
             for (var i = 0; i < 100; i++) {
               setTimeout(function(context, i) {
                 cx.clearRect(0, 80, marioW, marioH);
-                context.translate(0, -(100 - 2*i)/50);
+                context.translate(0, (2*i - 100)/50);
                 drawMarioSlice(cycle);
               }, 10 * i, cx, i);
             }
