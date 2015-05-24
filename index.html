@@ -21,7 +21,7 @@
         drawMarioSlice(0);
         var cycle = 0;
         window.addEventListener('keypress', function(e) {
-          cx.clearRect(0, 60, marioW, marioH);
+          cx.clearRect(0, 80, marioW, marioH);
           if (String.fromCharCode(e.keyCode) == 'd') {
             cx.translate(2, 0);
             cycle = (cycle + 1) % 8;
@@ -31,7 +31,7 @@
           } else if (String.fromCharCode(e.keyCode) == 'w') {
             for (var i = 0; i < 100; i++) {
               setTimeout(function(context, i) {
-                cx.clearRect(0, 60, marioW, marioH);
+                cx.clearRect(0, 80, marioW, marioH);
                 context.translate(0, -(100 - 2*i)/50);
                 drawMarioSlice(cycle);
               }, 10 * i, cx, i);
@@ -45,7 +45,7 @@
         cx.drawImage(
           img,
           i * marioW, 0, marioW, marioH,
-          0,          60, marioW, marioH
+          0,          80, marioW, marioH
         );
       }
 
