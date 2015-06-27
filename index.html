@@ -8,28 +8,53 @@
   </head>
   <body>
 
-    <canvas width="300" height="150" style="border: 1px black solid"></canvas>
+
+    <canvas width="1000", height="600" style="background: url('bg.gif'); background-repeat: repeat-x;"></canvas>
 
     <script>
-      var canvas = document.querySelector("canvas");
-      var context = canvas.getContext("2d");
+      var cx = document.querySelector("canvas").getContext("2d");
+      cx.scale(2, 2);
+      var img = document.createElement('img');
+      img.src = 'mario.png';
+      var marioW = 21,
+          marioH = 34;
 
-      context.beginPath();
-      context.moveTo(75, 50);
-      context.lineTo(100, 75);
-      context.lineTo(100, 25);
-      context.fill();
+      img.addEventListener('load', function() {
+        drawMarioSlice(0);
+        var cycle = 0;
+        window.addEventListener('keypress', function(e) {
+          cx.clearRect(0, 70, marioW, marioH);
+          if (String.fromCharCode(e.keyCode) == 'd') {
+            cx.translate(2, 0);
+            cycle = (cycle + 1) % 8;
+          } else if (String.fromCharCode(e.keyCode) == 'a') {
+            cx.translate(-2, 0);
+            cycle = (cycle + 1) % 8;
+          }
+          drawMarioSlice(cycle);
+        });
+        window.addEventListener('keyup', function(e) {
+          if (String.fromCharCode(e.keyCode).toLowerCase() == 'w') {
+            for (var i = 1; i < 100; i++) {
+              setTimeout(function(context, i) {
+                cx.clearRect(0, 70, marioW, marioH);
+                context.translate(0, (2*i - 100)/50);
+                drawMarioSlice(cycle);
+              }, 7 * i, cx, i);
+            }
+          }
+        });
+      });
 
-      // context.beginPath();
-      // context.arc(50, 75, 30, 0, 2*Math.PI);
-      // context.stroke();
-      // context.fillStyle = "blue";
-      // context.fill();
+      function drawMarioSlice(i) {
+        cx.drawImage(
+          img,
+          i * marioW, 0, marioW, marioH,
+          0,          70, marioW, marioH
+        );
+      }
 
-      // context.fillStyle = "red";
-      // context.rotate(Math.PI/4);
-      // context.scale(3, 0.5)
-      // context.fillRect(10, 10, 100, 50);
     </script>
+
   </body>
 </html>
